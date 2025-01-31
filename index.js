@@ -22,9 +22,9 @@ function playRound(playerSelection, computerSelection) {
         case "rock":
           return "It's a tie! ✋"; // If both choose rock, it's a tie
         case "paper":
-          return "You lose! Paper beats Rock ✋🪨"; // If the computer chooses paper, the player loses
+          return "You lose! Paper 🧻 beats Rock 🧱"; // If the computer chooses paper, the player loses
         case "scissors":
-          return "You win! Rock beats Scissors 🪨✂️"; // If the computer chooses scissors, the player wins
+          return "You win! Rock 🧱 beats Scissors ✂️"; // If the computer chooses scissors, the player wins
       }
       break;
     case "paper": // If the player's choice is "paper"
@@ -32,11 +32,11 @@ function playRound(playerSelection, computerSelection) {
         computerSelection // Switch based on the computer's choice
       ) {
         case "rock":
-          return "You win! Paper beats Rock 🧻🪨"; // Paper beats rock
+          return "You win! Paper 🧻 beats Rock 🧱"; // Paper beats rock
         case "paper":
           return "It's a tie! ✋"; // If both choose paper, it's a tie
         case "scissors":
-          return "You lose! Scissors beats Paper ✂️🧻"; // Scissors beats paper
+          return "You lose! Scissors ✂️ beats Paper 🧻"; // Scissors beats paper
       }
       break;
     case "scissors": // If the player's choice is "scissors"
@@ -44,9 +44,9 @@ function playRound(playerSelection, computerSelection) {
         computerSelection // Switch based on the computer's choice
       ) {
         case "rock":
-          return "You lose! Rock beats Scissors 🪨✂️"; // Rock beats scissors
+          return "You lose! Rock 🧱 beats Scissors ✂️"; // Rock beats scissors
         case "paper":
-          return "You win! Scissors beats Paper ✂️🧻"; // Scissors beats paper
+          return "You win! Scissors ✂️ beats Paper 🧻"; // Scissors beats paper
         case "scissors":
           return "It's a tie! ✋"; // If both choose scissors, it's a tie
       }
