@@ -104,7 +104,7 @@ function game() {
     const result = playRound(playerSelection, computerSelection); // Call playRound to get the result of this round
     console.log(result); // Display the result of the round
 
-    // Update the score based on the round result okay
+    // Update the score based on the round result
     if (result.includes("win")) {
       // If the result includes "win" (the player won)
       playerScore++; // Increment player's score
