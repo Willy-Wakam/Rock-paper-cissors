@@ -98,6 +98,11 @@ function game() {
     2. Paper 📝 beats  Rock 🧱 \n
     3. Scissors ✂️ beats Paper 📝`
   );
+  alert(
+    "For a smooth interaction you have to open the console to see the results and some advice of the game 🎉. \n\n" + 
+    "To achieve this, you have to press F12 or right click on the page and click on inspect. \n" +
+    "Then click on the console tab. \n\n" +
+    "Now you are ready to play the game 🎉. \n\n");
   
   for (let round = 1; round <= 5; round++) {
     playerSelection = getPlayeInput(round); 
