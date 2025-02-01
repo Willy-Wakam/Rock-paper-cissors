@@ -1,62 +1,59 @@
-// global variables
-let playAgain = true; // tracks if player want's to play again
-let playerScore = 0; // Initialize the player's score to 0
-let computerScore = 0; // Initialize the computer's score to 0
+let playAgain = true;
+let playerScore = 0;
+let computerScore = 0; 
+let playerSelection;
 
-// Function to randomly choose between "rock", "paper", and "scissors"
 function computerPlay() {
-  const choices = ["rock", "paper", "scissors"]; // List of possible choices for the computer
-  const randomIndex = Math.floor(Math.random() * 3); // Random index from 0 to 2 (0 = rock, 1 = paper, 2 = scissors)
-  return choices[randomIndex]; // Return the choice at the random index
+  const choices = ["rock", "paper", "scissors"];
+  const randomIndex = Math.floor(Math.random() * 3);
+  return choices[randomIndex];
 }
 
-// Function to compare the user's choice with the computer's choice using switch
 function playRound(playerSelection, computerSelection) {
   switch (
-    playerSelection // Switch based on the player's selection
+    playerSelection 
   ) {
-    case "rock": // If the player's choice is "rock"
+    case "rock":
       switch (
-        computerSelection // Switch based on the computer's choice
+        computerSelection 
       ) {
         case "rock":
-          return "It's a tie! ✋"; // If both choose rock, it's a tie
+          return "It's a tie! ✋";
         case "paper":
-          return "You lose! Paper 🧻 beats Rock 🧱"; // If the computer chooses paper, the player loses
+          return "You lose! Paper 🧻 beats Rock 🧱"; 
         case "scissors":
-          return "You win! Rock 🧱 beats Scissors ✂️"; // If the computer chooses scissors, the player wins
+          return "You win! Rock 🧱 beats Scissors ✂️"; 
       }
       break;
-    case "paper": // If the player's choice is "paper"
+    case "paper":
       switch (
-        computerSelection // Switch based on the computer's choice
+        computerSelection
       ) {
         case "rock":
-          return "You win! Paper 🧻 beats Rock 🧱"; // Paper beats rock
+          return "You win! Paper 🧻 beats Rock 🧱"; 
         case "paper":
-          return "It's a tie! ✋"; // If both choose paper, it's a tie
+          return "It's a tie! ✋"; 
         case "scissors":
-          return "You lose! Scissors ✂️ beats Paper 🧻"; // Scissors beats paper
+          return "You lose! Scissors ✂️ beats Paper 🧻"; 
       }
       break;
-    case "scissors": // If the player's choice is "scissors"
+    case "scissors": 
       switch (
-        computerSelection // Switch based on the computer's choice
+        computerSelection
       ) {
         case "rock":
-          return "You lose! Rock 🧱 beats Scissors ✂️"; // Rock beats scissors
+          return "You lose! Rock 🧱 beats Scissors ✂️"; 
         case "paper":
-          return "You win! Scissors ✂️ beats Paper 🧻"; // Scissors beats paper
+          return "You win! Scissors ✂️ beats Paper 🧻";
         case "scissors":
-          return "It's a tie! ✋"; // If both choose scissors, it's a tie
+          return "It's a tie! ✋";
       }
       break;
     default:
-      return "Invalid choice!"; // If the player's input is invalid (not rock, paper, or scissors)
+      return "Invalid choice!"; 
   }
 }
 
-// Function returns emoji based on round number
 function roundEmoji(round) {
   switch (round) {
     case 1:
@@ -72,91 +69,96 @@ function roundEmoji(round) {
   }
 }
 
-// Function to play the game
-function game() {
-  // Play 5 rounds of the game
-
-  for (let round = 1; round <= 5; round++) {
-    let playerSelection = prompt(
-      `Round ${roundEmoji(
-        round
-      )} \nEnter your choice (rock, paper, or scissors):`
-    ).toLowerCase().trim(); // Prompt player for input and convert to lowercase
-    const computerSelection = computerPlay(); // Get the computer's random choice
-
-    while (
-      playerSelection !== "rock" &&
-      playerSelection !== "paper" &&
-      playerSelection !== "scissors"
-    ) {
-      console.log("Incorrect choice 😡 , please try again");
-      playerSelection = prompt(
-        `Round  ${roundEmoji(
-          round
-        )} \nEnter valid choice (rock, paper, or scissors):`
-      ).toLowerCase();
-    }
-
-    console.log(`Round ${round}:`); // Display the current round number in the console
-    console.log(`You chose: ${playerSelection}`); // Display the player's choice
-    console.log(`Computer chose: ${computerSelection}`); // Display the computer's choice
-
-    const result = playRound(playerSelection, computerSelection); // Call playRound to get the result of this round
-    console.log(result); // Display the result of the round
-
-    // Update the score based on the round result
-    if (result.includes("win")) {
-      // If the result includes "win" (the player won)
-      playerScore++; // Increment player's score
-    } else if (result.includes("lose")) {
-      // If the result includes "lose" (the player lost)
-      computerScore++; // Increment computer's score
-    }
+function getPlayeInput(round){
+  playerSelection = prompt(
+    `Round ${roundEmoji(
+      round
+    )} \nEnter your choice (rock, paper, or scissors):`
+  ); 
+  if (playerSelection === null) {
+    console.log("You have cancelled the game 😢");
+    alert("You have cancelled the game 😢");
+    return playerSelection; 
   }
-
-  // Display the final score and who won
-  if (playerScore > computerScore) {
-    // If the player has more points than the computer
-    console.log(
-      `You win the game! Final score: You - ${playerScore}, Computer - ${computerScore}`
-    );
-    alert(
-      `🎉 You win the game! 🎉 Final score: You - ${playerScore}, Computer - ${computerScore} 🏆`
-    );
-  } else if (playerScore < computerScore) {
-    console.log(
-      `You lose the game! Final score: You - ${playerScore}, Computer - ${computerScore}`
-    ); // Display player's loss message
-    alert(
-      `😭 You lose the game! 😭 Final score: You - ${playerScore}, Computer - ${computerScore} 💔`
-    );
-  } else {
-    // If both the player and computer have the same score
-    console.log(
-      `It's a tie game! Final score: You - ${playerScore}, Computer - ${computerScore}`
-    ); // Display tie message
-    alert(
-      `🤝 It's a tie game! 🤝 Final score: You - ${playerScore}, Computer - ${computerScore} ⚖️`
-    ); // Alert  if it's a tie
+  else {
+    playerSelection = playerSelection.toLowerCase().trim();
+    return playerSelection;
   }
 }
 
-alert(
-  "Welcome to the Rock 🧱 Paper 📝 ! Scissors ✂️ Game.  😎 You are about to start the game. Can you beat me 🤔"
-);
-alert(
-  `Here are the rules 📜 \n  
-  1. Rock 🧱 beats Scissors ✂️  \n 
-  2. Paper 📝 beats  Rock 🧱 \n
-  3. Scissors ✂️ beats Paper 📝`
-);
+
+function game() {
+    
+  alert(
+    "Welcome to the Rock 🧱 Paper 📝 ! Scissors ✂️ Game.  😎 You are about to start the game. Can you beat me 🤔"
+  );
+  alert(
+    `Here are the rules 📜 \n  
+    1. Rock 🧱 beats Scissors ✂️  \n 
+    2. Paper 📝 beats  Rock 🧱 \n
+    3. Scissors ✂️ beats Paper 📝`
+  );
+  
+  for (let round = 1; round <= 5; round++) {
+    playerSelection = getPlayeInput(round); 
+    const computerSelection = computerPlay(); 
+    if (playerSelection === null) {
+      break;
+    }
+    while (
+      playerSelection !== "rock" &&
+      playerSelection !== "paper" &&
+      playerSelection !== "scissors" 
+    ) {
+      console.log("Incorrect choice 😡 , please try again");
+      playerSelection = getPlayeInput(round);
+    }
+
+    console.log(`Round ${round}:`); 
+    console.log(`You chose: ${playerSelection}`); 
+    console.log(`Computer chose: ${computerSelection}`); 
+
+    const result = playRound(playerSelection, computerSelection); 
+    console.log(result);
+
+    if (result.includes("win")) {
+      playerScore++; 
+    } else if (result.includes("lose")) {
+      computerScore++; 
+    }
+  }
+
+  if(playerSelection !== null){
+    if (playerScore > computerScore) {
+      console.log(
+        `You won! 🎉 Your score: ${playerScore}, Computer's score: ${computerScore}`
+      );
+      alert(
+        `You won! 🎉 Your score: ${playerScore}, Computer's score: ${computerScore}`
+      );
+    } else if (playerScore < computerScore) {
+      console.log(
+        `You lost! 😢 Your score: ${playerScore}, Computer's score: ${computerScore}`
+      );
+      alert(
+        `You lost! 😢 Your score: ${playerScore}, Computer's score: ${computerScore}`
+      );
+    } else {
+      console.log(
+        `It's a tie! ✋ Your score: ${playerScore}, Computer's score: ${computerScore}`
+      );
+      alert(
+        `It's a tie! ✋ Your score: ${playerScore}, Computer's score: ${computerScore}`
+      );
+    }
+  } 
+}
 
 while (playAgain) {
-  // Start the game
-  game(); // Call the game function to start the game
+  game(); 
   playAgain = confirm("Do you want to play again 🔄? (ok(yes) / cancel(no))");
-  playerScore = 0; // reset player score
-  computerScore = 0; // reset computer score
+  playerScore = 0;
+  computerScore = 0;
   console.clear();
 }
 
