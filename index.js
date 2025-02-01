@@ -81,7 +81,7 @@ function game() {
       `Round ${roundEmoji(
         round
       )} \nEnter your choice (rock, paper, or scissors):`
-    ).toLowerCase(); // Prompt player for input and convert to lowercase
+    ).toLowerCase().trim(); // Prompt player for input and convert to lowercase
     const computerSelection = computerPlay(); // Get the computer's random choice
 
     while (
