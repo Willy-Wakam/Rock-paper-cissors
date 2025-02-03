@@ -73,7 +73,7 @@ function getPlayeInput(round){
   playerSelection = prompt(
     `Round ${roundEmoji(
       round
-    )} \nEnter your choice (rock, paper, or scissors):`
+    )}          You: ${playerScore}     vs    Computer: ${computerScore} \nEnter your choice (rock, paper, or scissors):`
   ); 
   if (playerSelection === null) {
     console.log("You have cancelled the game 😢");
@@ -124,6 +124,9 @@ function game() {
     console.log(`Computer chose: ${computerSelection}`); 
 
     const result = playRound(playerSelection, computerSelection); 
+    alert(`Round ${round}: \n` + 
+      `${result}`
+    )
     console.log(result);
 
     if (result.includes("win")) {
